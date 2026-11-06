@@ -1,6 +1,6 @@
-import { createGame, move, update, croissants } from './game.js';
-import { render } from './render.js';
-import { bindInput } from './input.js';
+import { createGame, move, update, croissants } from './game.js?v=d5e4e52';
+import { render } from './render.js?v=d5e4e52';
+import { bindInput } from './input.js?v=d5e4e52';
 
 const $ = selector => document.querySelector(selector);
 const ctx = $('#game').getContext('2d');
