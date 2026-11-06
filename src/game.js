@@ -2,6 +2,7 @@ export const TYPES = [
   { name: 'QUICK SYNC?', message: '“Just a quick sync.” +5 seconds', color: '#a38dba' },
   { name: '27 EMAILS', message: 'Replying all… +5 seconds', color: '#e7b863' },
   { name: 'BAD BADGE', message: 'Access denied. Again. +5 seconds', color: '#d77d71' },
+  { name: 'STRAY CHAIR', message: 'Who left a chair here? +5 seconds', color: '#7caaa1' },
 ];
 
 export function createGame(character = 'male') {
@@ -21,7 +22,7 @@ export function update(game, dt, random = Math.random) {
   game.spawn -= dt;
   if (game.spawn <= 0 && !game.delay) {
     game.obstacles.push({ lane: Math.floor(random() * 3), type: Math.floor(random() * TYPES.length), y: -70, hit: false });
-    game.spawn = 1.25 + random() * .45;
+    game.spawn = .95 + random() * .35;
   }
   for (const obstacle of game.obstacles) {
     if (!game.delay) obstacle.y += (155 + game.distance * .65) * dt;
