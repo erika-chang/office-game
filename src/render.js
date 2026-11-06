@@ -1,4 +1,4 @@
-import { TYPES } from './game.js?v=d5e4e52';
+import { TYPES } from './game.js?v=45-second-rush';
 
 export function render(ctx, game) {
   const rect = (x, y, w, h, color) => { ctx.fillStyle = color; ctx.fillRect(Math.round(x), Math.round(y), w, h); };

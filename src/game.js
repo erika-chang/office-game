@@ -6,7 +6,7 @@ export const TYPES = [
 ];
 
 export function createGame(character = 'male') {
-  return { character, lane: 1, time: 0, distance: 0, obstacles: [], spawn: 1, delay: 0, hits: 0, status: 'playing', notice: '', noticeTime: 0 };
+  return { character, lane: 1, time: 0, runTime: 0, distance: 0, obstacles: [], spawn: 1, delay: 0, hits: 0, status: 'playing', notice: '', noticeTime: 0 };
 }
 
 export function move(game, direction) {
@@ -17,13 +17,16 @@ export function update(game, dt, random = Math.random) {
   if (game.status !== 'playing') return;
   game.time += dt;
   game.noticeTime = Math.max(0, game.noticeTime - dt);
-  const speed = 1 + game.distance / 60;
   if (game.delay > 0) game.delay = Math.max(0, game.delay - dt);
-  else game.distance += speed * dt;
+  else {
+    game.runTime = Math.min(45, game.runTime + dt);
+    game.distance = .75 * game.runTime + 1.75 * game.runTime ** 3 / (3 * 45 ** 2);
+  }
+  const speed = .75 + 1.75 * (game.runTime / 45) ** 2;
   game.spawn -= dt;
   if (game.spawn <= 0 && !game.delay) {
     game.obstacles.push({ lane: Math.floor(random() * 3), type: Math.floor(random() * TYPES.length), y: -70, hit: false });
-    game.spawn = .95 + random() * .35;
+    game.spawn = .65 + random() * .3;
   }
   for (const obstacle of game.obstacles) {
     if (!game.delay) obstacle.y += 155 * speed * dt;
@@ -39,7 +42,7 @@ export function update(game, dt, random = Math.random) {
   }
   game.obstacles = game.obstacles.filter(obstacle => obstacle.y < 620);
   if (game.time >= 78) game.status = 'lost';
-  else if (game.distance >= 60) game.status = 'won';
+  else if (game.runTime >= 45) game.status = 'won';
 }
 
 export function croissants(game) {
