@@ -1,8 +1,8 @@
 export const TYPES = [
-  { name: 'QUICK SYNC?', message: '“Just a quick sync.” +5 seconds', color: '#a38dba' },
-  { name: '27 EMAILS', message: 'Replying all… +5 seconds', color: '#e7b863' },
-  { name: 'BAD BADGE', message: 'Access denied. Again. +5 seconds', color: '#d77d71' },
-  { name: 'STRAY CHAIR', message: 'Who left a chair here? +5 seconds', color: '#7caaa1' },
+  { name: 'QUICK SYNC?', message: '“Just a quick sync.”', penalty: 7, color: '#a38dba' },
+  { name: '27 EMAILS', message: 'Replying all…', penalty: 5, color: '#e7b863' },
+  { name: 'BAD BADGE', message: 'Access denied. Again.', penalty: 3, color: '#d77d71' },
+  { name: 'STRAY CHAIR', message: 'Who left a chair here?', penalty: 2, color: '#7caaa1' },
 ];
 
 export function createGame(character = 'male') {
@@ -17,21 +17,23 @@ export function update(game, dt, random = Math.random) {
   if (game.status !== 'playing') return;
   game.time += dt;
   game.noticeTime = Math.max(0, game.noticeTime - dt);
+  const speed = 1 + game.distance / 60;
   if (game.delay > 0) game.delay = Math.max(0, game.delay - dt);
-  else game.distance += dt;
+  else game.distance += speed * dt;
   game.spawn -= dt;
   if (game.spawn <= 0 && !game.delay) {
     game.obstacles.push({ lane: Math.floor(random() * 3), type: Math.floor(random() * TYPES.length), y: -70, hit: false });
     game.spawn = .95 + random() * .35;
   }
   for (const obstacle of game.obstacles) {
-    if (!game.delay) obstacle.y += (155 + game.distance * .65) * dt;
+    if (!game.delay) obstacle.y += 155 * speed * dt;
     if (!obstacle.hit && obstacle.y >= 425 && obstacle.y < 505 && obstacle.lane === game.lane) {
       obstacle.hit = true;
       game.hits++;
-      game.time += 5;
+      const type = TYPES[obstacle.type];
+      game.time += type.penalty;
       game.delay = .8;
-      game.notice = TYPES[obstacle.type].message;
+      game.notice = `${type.message} +${type.penalty} seconds`;
       game.noticeTime = 1.8;
     }
   }

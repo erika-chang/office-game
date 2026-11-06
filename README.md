@@ -12,7 +12,7 @@ python3 -m http.server 8000
 
 Open http://localhost:8000. No dependencies or build step.
 
-Choose your office worker, then use arrow keys / A and D, swipe, or the onscreen buttons to switch lanes. Space or Escape pauses. Reach the 8th Floor Cantine in 60 running seconds before the 78-second croissant supply runs out. Dodge quick meetings, email piles, faulty badge readers, and stray office chairs. Obstacles appear every 0.95–1.3 seconds. Each collision adds five seconds and a brief interruption.
+Choose your office worker, then use arrow keys / A and D, swipe, or the onscreen buttons to switch lanes. Space or Escape pauses. Run 60m to the 8th Floor Cantine before the 78-second croissant supply runs out. Running and scrolling speed increase with distance, reaching twice the starting speed at the finish. Dodge quick meetings, email piles, faulty badge readers, and stray office chairs. Obstacles appear every 0.95–1.3 seconds. Collisions add time penalties (colleague: 7 seconds, email: 5, badge: 3, chair: 2), plus a brief interruption.
 
 ## Structure
 
