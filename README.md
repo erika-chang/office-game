@@ -12,7 +12,7 @@ python3 -m http.server 8000
 
 Open http://localhost:8000. No dependencies or build step.
 
-Choose your office worker, then use arrow keys / A and D, swipe, or the onscreen buttons to switch lanes. Space or Escape pauses. Run 60m to the 8th Floor Cantine before the 78-second croissant supply runs out. A clean run takes 45 seconds. Running and scrolling speed ramp up gradually, finishing 25% faster than the previous version. Collision pauses extend the run. Dodge quick meetings, email piles, faulty badge readers, and stray office chairs. Obstacles appear every 0.65–0.95 seconds. Collisions add time penalties (colleague: 7 seconds, email: 5, badge: 3, chair: 2), plus a brief interruption.
+Choose your office worker, then use arrow keys / A and D, swipe, or the onscreen buttons to switch lanes. Space or Escape pauses. Run 75m to the 8th Floor Cantine before the 78-second croissant supply runs out. A clean run takes 45 seconds. Running and scrolling speed ramp up gradually and are 25% faster throughout the course than the version before Fabric login was added. Collision pauses extend the run. Dodge quick meetings, email piles, faulty badge readers, stray office chairs, and Fabric sign-in requests. Obstacles appear every 0.65–0.95 seconds. Collisions add time penalties (colleague: 7 seconds, Fabric login: 6, email: 5, badge: 3, chair: 2), plus a brief interruption.
 
 ## Structure
 

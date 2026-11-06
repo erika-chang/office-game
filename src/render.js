@@ -1,4 +1,4 @@
-import { TYPES } from './game.js?v=45-second-rush';
+import { TYPES } from './game.js?v=fabric-rush';
 
 export function render(ctx, game) {
   const rect = (x, y, w, h, color) => { ctx.fillStyle = color; ctx.fillRect(Math.round(x), Math.round(y), w, h); };
@@ -28,10 +28,14 @@ export function render(ctx, game) {
     } else if (obstacle.type === 2) {
       rect(x - 33, y - 5, 66, 58, '#596e72');rect(x - 24, y + 3, 48, 28, '#292b45');
       text('×', x, y + 25, 26, '#f18b79');rect(x - 8, y + 39, 16, 6, '#d77d71');
-    } else {
+    } else if (obstacle.type === 3) {
       rect(x - 23, y - 8, 46, 30, '#496e69');rect(x - 19, y - 4, 38, 22, type.color);
       rect(x - 29, y + 21, 58, 12, type.color);rect(x - 4, y + 33, 8, 13, '#59616b');
       rect(x - 27, y + 44, 54, 5, '#59616b');rect(x - 30, y + 47, 10, 8, '#292b45');rect(x + 20, y + 47, 10, 8, '#292b45');
+    } else {
+      rect(x - 41, y - 8, 82, 60, '#292b45');rect(x - 37, y - 4, 74, 52, '#f1f6ec');
+      rect(x - 37, y - 4, 74, 10, type.color);text('SIGN IN', x, y + 18, 10);
+      rect(x - 22, y + 23, 44, 9, '#d3d1ca');rect(x - 16, y + 37, 32, 7, type.color);
     }
     rect(x - 49, y - 32, 98, 18, type.color);text(type.name, x, y - 19, 10);
   }
@@ -46,5 +50,5 @@ export function render(ctx, game) {
   rect(x - 14, y - 19, 28, 25, '#e8b38b');rect(x - 17, y - 25, 34, 12, '#654440');
   rect(x - 4, y + 7, 8, 18, '#f8ead1');rect(x - 2, y + 10, 4, 15, '#e5b85f');
   rect(x + 24, y + 24 - step, 15, 18, '#936a4c');
-  if (game.distance > 55) {rect(50, 65 + (game.distance - 55) * 65, 380, 8, '#edc36b');text('🥐  8TH FLOOR CANTINE  🥐', 240, 55 + (game.distance - 55) * 65, 17);}
+  if (game.distance > 70) {rect(50, 65 + (game.distance - 70) * 65, 380, 8, '#edc36b');text('🥐  8TH FLOOR CANTINE  🥐', 240, 55 + (game.distance - 70) * 65, 17);}
 }

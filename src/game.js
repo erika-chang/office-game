@@ -3,6 +3,7 @@ export const TYPES = [
   { name: '27 EMAILS', message: 'Replying all…', penalty: 5, color: '#e7b863' },
   { name: 'BAD BADGE', message: 'Access denied. Again.', penalty: 3, color: '#d77d71' },
   { name: 'STRAY CHAIR', message: 'Who left a chair here?', penalty: 2, color: '#7caaa1' },
+  { name: 'FABRIC LOGIN', message: 'Fabric needs you to sign in. Again.', penalty: 6, color: '#78b7b2' },
 ];
 
 export function createGame(character = 'male') {
@@ -20,9 +21,9 @@ export function update(game, dt, random = Math.random) {
   if (game.delay > 0) game.delay = Math.max(0, game.delay - dt);
   else {
     game.runTime = Math.min(45, game.runTime + dt);
-    game.distance = .75 * game.runTime + 1.75 * game.runTime ** 3 / (3 * 45 ** 2);
+    game.distance = 1.25 * (.75 * game.runTime + 1.75 * game.runTime ** 3 / (3 * 45 ** 2));
   }
-  const speed = .75 + 1.75 * (game.runTime / 45) ** 2;
+  const speed = 1.25 * (.75 + 1.75 * (game.runTime / 45) ** 2);
   game.spawn -= dt;
   if (game.spawn <= 0 && !game.delay) {
     game.obstacles.push({ lane: Math.floor(random() * 3), type: Math.floor(random() * TYPES.length), y: -70, hit: false });

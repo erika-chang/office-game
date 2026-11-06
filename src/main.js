@@ -1,6 +1,6 @@
-import { createGame, move, update, croissants } from './game.js?v=45-second-rush';
-import { render } from './render.js?v=45-second-rush';
-import { bindInput } from './input.js?v=45-second-rush';
+import { createGame, move, update, croissants } from './game.js?v=fabric-rush';
+import { render } from './render.js?v=fabric-rush';
+import { bindInput } from './input.js?v=fabric-rush';
 
 const $ = selector => document.querySelector(selector);
 const ctx = $('#game').getContext('2d');
@@ -44,7 +44,7 @@ function frame(now) {
   const before = game.status;
   update(game, dt);
   render(ctx, game);
-  $('#distance').textContent = `${Math.max(0, Math.ceil(60 - game.distance))}m`;
+  $('#distance').textContent = `${Math.max(0, Math.ceil(75 - game.distance))}m`;
   $('#croissants').textContent = `${croissants(game)} 🥐`;
   $('#clock').textContent = game.time >= 60 ? '09:00' : '08:59';
   $('#notice').textContent = game.notice;
